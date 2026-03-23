@@ -21,6 +21,18 @@ class TestLambdaFunction3(unittest.TestCase):
     def test_evaluator4(self):
         result = lambda_handler({"expression": "100 200 + 3 /"})
         self.assertEqual(result['body'], 100)
+
+    def test_evaluator5(self):
+        result = lambda_handler({"expression": "10 8 + 9 /"})
+        self.assertEqual(result['body'], 2)
+
+    def test_evaluator6(self):
+        result = lambda_handler({"expression": "2 3 5 * *"})
+        self.assertEqual(result['body'], 30)
+
+    def test_evaluator7(self):
+        result = lambda_handler({"expression": "10 10 * 1 2 + -"})
+        self.assertEqual(result['body'], 97)
     
 
 if __name__ == '__main__':
