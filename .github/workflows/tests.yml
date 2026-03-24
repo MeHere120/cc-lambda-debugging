@@ -1,10 +1,14 @@
 name: tester
 on:
+  push:
+    branches:
+      - "contestant/**"
   pull_request:
     branches:
-      - 'contestant/**'
-jobs: 
+      - "main"
+jobs:
   test-validator:
+    if: ${{ github.event_name == 'push' || startsWith(github.head_ref, 'contestant/') }}
     runs-on: ubuntu-latest
     defaults:
       run:
