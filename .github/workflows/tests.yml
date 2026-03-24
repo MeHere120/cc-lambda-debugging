@@ -1,14 +1,32 @@
 name: tester
 on:
-  push:
-    branches:
-      - "contestant/**"
   pull_request:
     branches:
       - "main"
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - ready_for_review
 jobs:
+  pr-title-validator:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate PR title format
+        shell: bash
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+        run: |
+          # Strict rule: contestant/<name>
+          # Example: contestant/alice-01
+          if [[ ! "$PR_TITLE" =~ ^contestant\/[a-z0-9._-]+:\ .+ ]]; then
+            echo "Invalid PR title: '$PR_TITLE'"
+            echo "Required format: contestant/<name>"
+            exit 1
+          fi
+
   test-validator:
-    if: ${{ github.event_name == 'push' || startsWith(github.head_ref, 'contestant/') }}
+    needs: pr-title-validator
     runs-on: ubuntu-latest
     defaults:
       run:
