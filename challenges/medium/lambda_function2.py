@@ -20,6 +20,8 @@ Expected output: {"statusCode": 200, "body": "hAlpharlEchom"}
 """
 import json
 
+NATO = {'a':'Alpha', 'e':'Echo', 'i':'India', 'o':'Oscar', 'u':'Uniform', 'y':'Yankee'}
+
 def lambda_handler(event, context=None):
 
     word = event['word']
@@ -32,9 +34,9 @@ def lambda_handler(event, context=None):
         }
     
     for char in word:
-        res.append(char)
+        res.append(NATO.get(char.lower(),char)
 
     return {
         'statusCode': 200,
-        'body': res
+        'body': ''.join(res)
     }
