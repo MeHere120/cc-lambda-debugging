@@ -36,7 +36,7 @@ def lambda_handler(event, context=None):
         if char in ["+", "-", "/", "*"]:
             pass
         else:
-            res.append(char)
+            res.append(float(char))
 
     return {
         'statusCode': 200,
