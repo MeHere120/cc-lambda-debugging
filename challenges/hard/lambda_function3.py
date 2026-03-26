@@ -34,11 +34,20 @@ def lambda_handler(event, context=None):
     for char in expr:
 
         if char in ["+", "-", "/", "*"]:
-            pass
+            second, first = res.pop(), res.pop()
+            if char is == "+":
+                res.append(float( second + first))
+            elif char is == "-":
+                res.append(float( second - first))
+            elif char is == "/":
+                res.append( float(second / first))
+            elif char is == "*":
+                res.append( float(second * first))
+        
         else:
             res.append(float(char))
-
+    result = res[0]
     return {
         'statusCode': 200,
-        'body': res
+        'body': int(result) if int(result) == result else result
     }
