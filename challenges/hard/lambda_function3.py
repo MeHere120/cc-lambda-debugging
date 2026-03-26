@@ -35,13 +35,13 @@ def lambda_handler(event, context=None):
 
         if char in ["+", "-", "/", "*"]:
             second, first = res.pop(), res.pop()
-            if char is == "+":
+            if char is "+":
                 res.append(float( second + first))
-            elif char is == "-":
+            elif char is "-":
                 res.append(float( second - first))
-            elif char is == "/":
+            elif char is "/":
                 res.append( float(second / first))
-            elif char is == "*":
+            elif char is "*":
                 res.append( float(second * first))
         
         else:
