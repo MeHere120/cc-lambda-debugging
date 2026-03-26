@@ -34,7 +34,7 @@ def lambda_handler(event, context=None):
         }
     
     for char in word:
-        res.append(NATO.get(char.lower(),char)
+        res.append(NATO.get(char.lower(),char))
 
     return {
         'statusCode': 200,
